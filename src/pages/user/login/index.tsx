@@ -33,19 +33,19 @@ const LoginMessage: React.FC<{
 const Login: React.FC<LoginProps> = props => {
   const { userLogin = {}, submitting } = props;
   const { status, type: loginType } = userLogin;
-  const [autoLogin, setAutoLogin] = useState(true);
-  const [type, setType] = useState<string>('account');
+  // const [autoLogin, setAutoLogin] = useState(true);
+  // const [type, setType] = useState<string>('account');
 
   const handleSubmit = (values: LoginParamsType) => {
     const { dispatch } = props;
     dispatch({
       type: 'login/login',
-      payload: { ...values, type },
+      payload: { ...values },
     });
   };
   return (
     <div className={styles.main}>
-      <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
+      <LoginFrom activeKey="account" onSubmit={handleSubmit}>
         <Tab key="account" tab="账户密码登录">
           {status === 'error' && loginType === 'account' && !submitting && (
             <LoginMessage content="账户或密码错误（admin/ant.design）" />
@@ -53,7 +53,7 @@ const Login: React.FC<LoginProps> = props => {
 
           <UserName
             name="userName"
-            placeholder="用户名: admin or user"
+            placeholder="用户名"
             rules={[
               {
                 required: true,
@@ -63,7 +63,7 @@ const Login: React.FC<LoginProps> = props => {
           />
           <Password
             name="password"
-            placeholder="密码: ant.design"
+            placeholder="密码"
             rules={[
               {
                 required: true,
@@ -72,7 +72,7 @@ const Login: React.FC<LoginProps> = props => {
             ]}
           />
         </Tab>
-        <Tab key="mobile" tab="手机号登录">
+        {/* <Tab key="mobile" tab="手机号登录">
           {status === 'error' && loginType === 'mobile' && !submitting && (
             <LoginMessage content="验证码错误" />
           )}
@@ -103,8 +103,8 @@ const Login: React.FC<LoginProps> = props => {
               },
             ]}
           />
-        </Tab>
-        <div>
+        </Tab> */}
+        {/* <div>
           <Checkbox checked={autoLogin} onChange={e => setAutoLogin(e.target.checked)}>
             自动登录
           </Checkbox>
@@ -115,7 +115,7 @@ const Login: React.FC<LoginProps> = props => {
           >
             忘记密码
           </a>
-        </div>
+        </div> */}
         <Submit loading={submitting}>登录</Submit>
         <div className={styles.other}>
           {/* 其他登录方式 */}
