@@ -119,6 +119,12 @@ export default {
               component: './ListTableList',
             },
             {
+              name: '考试详情',
+              icon: 'smile',
+              path: '/exam/canvas',
+              component: './exam/canvas',
+            },
+            {
               component: './404',
             },
           ],
@@ -152,7 +158,7 @@ export default {
         resourcePath: string;
       },
       _: string,
-      localName: string
+      localName: string,
     ) => {
       if (
         context.resourcePath.includes('node_modules') ||
@@ -178,7 +184,8 @@ export default {
   },
   manifest: {
     basePath: '/',
-  }, // chainWebpack: webpackPlugin,
+  },
+  // chainWebpack: webpackPlugin,
   // proxy: {
   //   '/server/api/': {
   //     target: 'https://preview.pro.ant.design/',
@@ -188,4 +195,3 @@ export default {
   // },
   history: 'hash',
 } as IConfig;
-

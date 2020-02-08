@@ -1,6 +1,6 @@
 // import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
-import { Alert, Checkbox } from 'antd';
-import React, { useState } from 'react';
+import { Alert } from 'antd';
+import React from 'react';
 import { Dispatch, AnyAction } from 'redux';
 import { Link } from 'umi';
 import { connect } from 'dva';
@@ -10,7 +10,7 @@ import { ConnectState } from '@/models/connect';
 import styles from './style.less';
 import LoginFrom from './components/Login';
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginFrom;
+const { Tab, UserName, Password, Submit } = LoginFrom;
 interface LoginProps {
   dispatch: Dispatch<AnyAction>;
   userLogin: StateType;
