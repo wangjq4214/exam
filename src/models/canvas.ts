@@ -1,19 +1,23 @@
 import { Reducer } from 'redux';
 import { Effect } from 'dva';
+import Konva from 'konva';
 import { getList, getListReturnType } from '@/services/canvas';
+
+export interface CanvasResultType {
+  name: string;
+  vertex: Konva.Layer;
+}
 
 export interface CanvasStateType {
   current: number;
+  currentItem: number;
   image: {
     name: string;
     id: number;
   }[];
   result: {
     bodyPart: string;
-    annotations: {
-      name: string;
-      vertex: string;
-    }[];
+    annotations: CanvasResultType[];
   }[];
 }
 
@@ -25,6 +29,7 @@ export interface CanvasModelType {
   };
   reducers: {
     changeImage: Reducer;
+    save: Reducer;
   };
 }
 
@@ -32,6 +37,7 @@ const Model: CanvasModelType = {
   namespace: 'canvas',
   state: {
     current: 0,
+    currentItem: 0,
     image: [],
     result: [],
   },
@@ -55,9 +61,21 @@ const Model: CanvasModelType = {
         id: item.id,
       }));
 
+      const temp = payload.result.map(() => ({
+        bodyPart: '',
+        annotations: [],
+      }));
+
       return {
         ...state,
         image: data,
+        result: temp,
+      };
+    },
+    save(state, { payload }) {
+      return {
+        ...state,
+        ...payload,
       };
     },
   },

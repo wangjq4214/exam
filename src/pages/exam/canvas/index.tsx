@@ -14,7 +14,6 @@ interface Props {
 }
 
 const Index: React.FC<Props> = props => {
-  const { image, current } = props.userCanvas;
   const [examing, setExaming] = useState<boolean>(false);
 
   const enterExam = async () => {
@@ -41,7 +40,7 @@ const Index: React.FC<Props> = props => {
             </Button>
           </div>
         ) : (
-          <Canvas url={image[current].name} />
+          <Canvas />
         )}
       </Card>
     </PageHeaderWrapper>
