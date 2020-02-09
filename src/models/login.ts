@@ -47,7 +47,7 @@ const Model: LoginModelType = {
 
     logout() {
       const { redirect } = getPageQuery();
-      localStorage.clear();
+      sessionStorage.clear();
       // Note: There may be security issues, please note
       if (window.location.pathname !== '/user/login' && !redirect) {
         router.replace({
@@ -62,8 +62,8 @@ const Model: LoginModelType = {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      const authority = ['root', 'admin', 'designer'];
-      setAuthority(authority[payload.result.type - 1]);
+      const authority = ['root', 'admin', 'user'];
+      setAuthority(authority.slice(payload.result.type - 1));
       return {
         ...state,
         status: payload.result.id,

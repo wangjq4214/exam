@@ -97,32 +97,14 @@ export default {
           routes: [
             {
               path: '/',
-              redirect: '/welcome',
-            },
-            {
-              path: '/welcome',
-              name: 'welcome',
-              icon: 'smile',
-              component: './Welcome',
-            },
-            {
-              path: '/admin',
-              name: 'admin',
-              icon: 'crown',
-              component: './Admin',
-              authority: ['admin'],
-            },
-            {
-              name: '获取列表',
-              icon: 'table',
-              path: '/list',
-              component: './ListTableList',
+              redirect: '/exam/canvas',
             },
             {
               name: '考试详情',
               icon: 'smile',
               path: '/exam/canvas',
               component: './exam/canvas',
+              authority: ['root', 'admin', 'user'],
             },
             {
               component: './404',
