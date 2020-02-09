@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dispatch, AnyAction } from 'redux';
 import { connect } from 'dva';
-import { Button, Steps, Input, Divider, Typography, List } from 'antd';
+import { Button, Steps, Input, Divider, Typography, List, message } from 'antd';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { ConnectState } from '@/models/connect';
 import { CanvasStateType } from '@/models/canvas';
@@ -89,6 +89,10 @@ const Toolbox: React.FC<ToolboxProps> = props => {
           <Button onClick={clearAll}>清空</Button>
           <Button
             onClick={() => {
+              if (name === '') {
+                message.error('结构名称必须填写');
+                return;
+              }
               saveStep(name);
               setName('');
             }}
